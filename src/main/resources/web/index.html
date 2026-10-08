@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#087e78"><title>HealthSync | Healthcare Management</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="HealthSync dashboard"><span class="brand-mark">H</span><span><strong>HealthSync</strong><small>Care, connected</small></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav id="navigation" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span>▦</span>Dashboard</button>
+        <button class="nav-item" data-view="appointments"><span>▣</span>Appointments</button>
+        <button class="nav-item" data-view="records"><span>▤</span>Medical Records</button>
+        <button class="nav-item" data-view="prescriptions"><span>＋</span>Prescriptions</button>
+        <button class="nav-item" data-view="payments"><span>＄</span>Payments</button>
+        <button class="nav-item" data-view="notifications"><span>◉</span>Notifications</button>
+        <button class="nav-item" data-view="emergency"><span>✚</span>Emergency</button>
+        <button class="nav-item" data-view="reports"><span>▥</span>Reports</button>
+        <button class="nav-item" data-view="patterns"><span>◇</span>Design Patterns</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="demo-note"><span class="status-dot"></span><div><strong>Demo workspace</strong><small>Sample data only</small></div></div><small class="version">HealthSync · Java 17</small></div>
+    </aside>
+    <div class="mobile-scrim" id="scrim"></div>
+    <main class="main-area">
+      <header class="topbar"><button id="menu-toggle" class="icon-button menu-toggle" aria-label="Open navigation">☰</button><div class="crumb"><span>Workspace</span><b>/</b><strong id="page-title">Dashboard</strong></div><div class="topbar-right"><div class="online"><span class="status-dot"></span><span>System Online</span></div><div class="profile"><span class="avatar">JD</span><span class="profile-name"><strong>Jordan Davis</strong><small>Demo patient</small></span></div><button class="logout" id="logout">Log out</button></div></header>
+      <section class="content" id="content" aria-live="polite"></section>
+      <footer class="page-footer">HealthSync demonstration · All displayed patient and billing information is fictional sample data.</footer>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="Close">×</button><div class="eyebrow">HEALTHSYNC DEMO</div><h2 id="modal-title">Demo information</h2><div id="modal-body"></div><button class="button primary" id="modal-done">Done</button></section></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
