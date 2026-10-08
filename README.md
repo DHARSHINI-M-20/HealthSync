@@ -1,5 +1,38 @@
 # HealthSync
 
+## Deploy the web demonstration on Render
+
+The project includes a small browser interface backed by Java's built-in `HttpServer`. It runs separately from the Swing desktop entry point and uses existing pattern classes for its examples.
+
+### Run locally
+
+With Java 17 and Maven installed, from the project root run:
+
+```powershell
+mvn clean package
+$env:PORT = "10000"
+mvn exec:java -Pweb
+```
+
+Open `http://localhost:10000`. Check `http://localhost:10000/health` for `{"status":"ok","service":"HealthSync"}`. The server also uses port 10000 when `PORT` is unset.
+
+### Render configuration
+
+1. Push this repository to GitHub and create a **New + → Web Service** in Render, connected to the repository.
+2. Choose **Docker** as the runtime. Render builds from the root `Dockerfile`; do not enter separate build or start commands.
+3. Deploy. Render supplies `PORT`; the container binds to `0.0.0.0` and serves the browser page at `/`.
+4. The service health endpoint is `/health` (HTTP 200 JSON). Set the Render health check path to `/health` if configuring one.
+
+The Dockerfile builds with Maven and Java 17, then starts `com.healthsync.web.WebServer` (the Swing `com.healthsync.Main` remains the desktop entry point).
+
+### Environment variables
+
+- `PORT`: Render's assigned listening port; defaults to `10000` for local use.
+- `HEALTHSYNC_MONGODB_URI`: MongoDB URI used by the existing MongoDB configuration. The web server does not connect to MongoDB during startup; database-backed operations can report connection errors when invoked.
+- `HEALTHSYNC_MONGODB_DATABASE`: optional MongoDB database name override (defaults to `healthsync`).
+
+The web demonstration page is intentionally limited to patterns that can be exercised without a live Swing window or database. Existing examples that are still TODO skeletons or require persisted application services report that constraint in the output.
+
 HealthSync is a Java 17 desktop healthcare management system. It gives patients and care teams one workspace for scheduling appointments, maintaining medical records, issuing prescriptions, tracking payments, sending notifications, handling emergencies, and generating reports.
 
 The project is also a practical demonstration of object-oriented design patterns in a real application: factories, builder, adapter, bridge, chain of responsibility, command, composite, decorator, facade, flyweight, interpreter, iterator, mediator, memento, observer, prototype, proxy, state, strategy, template method, and visitor.
